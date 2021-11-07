@@ -1,5 +1,5 @@
 package com.example.bluetootharduino;
-
+import
 import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private final List<String> nombresEncontrados = new ArrayList<>();
     private TextView tvResultado;
     private TextView tvDispositivos;
+    private ConnectThread connectThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +131,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    protected void dispositivos()
+    {
+        
+
+    }
+    //aqui
+
+    /// Cuidado aqui
     @Override
     protected void onDestroy() {
         super.onDestroy();
