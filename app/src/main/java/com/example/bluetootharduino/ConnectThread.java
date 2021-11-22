@@ -8,7 +8,7 @@ import android.util.Log;
 import java.io.IOException;
 import java.util.UUID;
 
-public class ConnectThread extends Thread {
+public class  ConnectThread extends Thread {
 
 
     private static final UUID MY_UUID = UUID.randomUUID();
