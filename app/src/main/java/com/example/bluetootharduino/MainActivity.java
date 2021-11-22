@@ -1,17 +1,12 @@
 package com.example.bluetootharduino;
-
 import android.Manifest;
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.location.LocationManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
@@ -19,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private final List<String> nombresEncontrados = new ArrayList<>();
     private TextView tvResultado;
     private TextView tvDispositivos;
+    private ConnectThread connectThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +125,13 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nombresEmparejados);
             lista.setAdapter(adapter);
+            lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Log.i("Click", "Click en el elemento " + position + " de mi lista");
+                    Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
@@ -149,6 +154,13 @@ public class MainActivity extends AppCompatActivity {
                 nombresEncontrados.add(nombreDispositivo + "\n"+direccionHardware);
                 Log.e("ENCONTRADO", nombreDispositivo + " => " + direccionHardware);
                 lista.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, nombresEncontrados));
+                lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Log.i("Click", "Click en el elemento " + position + " de mi lista");
+                        Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }
     };
